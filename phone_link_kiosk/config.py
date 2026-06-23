@@ -4,6 +4,23 @@ Edit these values to tune behaviour for your specific PC / Phone Link version.
 """
 
 # ---------------------------------------------------------------------------
+# Startup banner (shown right after the .exe is launched)
+# ---------------------------------------------------------------------------
+
+# Lines printed/logged on startup before the watch loop begins.
+STARTUP_MESSAGE_LINES = [
+    "Phone Link Kiosk Launcher",
+    "Starting up - please wait...",
+    "Phone Link will be locked to the foreground until it is synced.",
+]
+
+# How long (seconds) to display the banner before continuing. Set to 0 to skip.
+STARTUP_HOLD_SECONDS = 30
+
+# Print a live 'continuing in N...' countdown during the hold.
+STARTUP_COUNTDOWN = True
+
+# ---------------------------------------------------------------------------
 # Launch settings
 # ---------------------------------------------------------------------------
 

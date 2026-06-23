@@ -83,9 +83,40 @@ def release_lock(hwnd):
         pass
 
 
+def show_startup_banner():
+    """
+    Print the startup message and hold for STARTUP_HOLD_SECONDS before the
+    watch loop begins. Shows a live countdown if enabled.
+
+    NOTE: this prints to the console. If you build with --noconsole, the
+    text won't be visible (but the hold still happens). To SEE it, build
+    without --noconsole or run `python main.py`.
+    """
+    for line in config.STARTUP_MESSAGE_LINES:
+        logging.info(line)
+
+    hold = config.STARTUP_HOLD_SECONDS
+    if hold <= 0:
+        return
+
+    if config.STARTUP_COUNTDOWN:
+        for remaining in range(hold, 0, -1):
+            sys.stdout.write("\rContinuing in %2d second(s)... " % remaining)
+            sys.stdout.flush()
+            time.sleep(1)
+        sys.stdout.write("\r" + " " * 40 + "\r")
+        sys.stdout.flush()
+    else:
+        time.sleep(hold)
+
+    logging.info("Startup hold complete - continuing.")
+
+
 def main():
     setup_logging()
     logging.info("=== Phone Link Kiosk Launcher started ===")
+
+    show_startup_banner()
 
     hwnd = ensure_window()
     last_ocr = 0.0
