@@ -1,0 +1,7 @@
+# Python dependencies for Phone Link Kiosk Launcher (Windows only).
+# Install with:  pip install -r requirements.txt
+pywin32==306
+psutil==5.9.8
+pytesseract==0.3.10
+Pillow==10.3.0
+pyinstaller==6.6.0
